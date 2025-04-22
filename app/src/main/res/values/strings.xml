@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Poopoo_App</string>
+    <string name="enter_notes_about_your_poop">Enter notes about your poop</string>
+    <string name="alarm">Alarm</string>
+    <string name="statistic">Statistic</string>
+    <string name="calendar">Calendar</string>
+</resources>
