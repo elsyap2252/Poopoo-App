@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:id="@+id/btnBack"
+            android:src="@drawable/back_button"
+            android:contentDescription="Back"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="center_vertical"/>
         <!-- Judul -->
         <TextView
             android:id="@+id/titleText"
@@ -20,6 +39,8 @@
             android:gravity="center"
             android:padding="12dp"
             android:textColor="#000000" />
+
+    </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
