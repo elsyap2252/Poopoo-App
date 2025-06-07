@@ -42,5 +42,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.material.calendarview)
     implementation(libs.circleimageview)
+    implementation(libs.mpandroidchart)
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 }
