@@ -1,43 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp"
-    android:gravity="center">
+    android:padding="32dp">
 
+    <!-- Gambar -->
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:src="@drawable/orangditoilet"
-        android:contentDescription="Poop Planner Icon"/>
+        android:id="@+id/imageOnboarding"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:src="@drawable/poopkalender"
+        android:contentDescription="Poop Planner Icon"
+        android:layout_marginTop="85dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
+    <!-- Judul -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Karena BAB juga butuh rencana!"
-        android:textSize="24sp"
+        android:text="Mulai dari catat waktu BAB kamu"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:paddingTop="16dp"/>
+        android:textAlignment="center"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@id/imageOnboarding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- Deskripsi -->
     <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Catat waktu BAB kamu setiap kali selesai buang air besar. Dengan mencatat secara rutin, kamu bisa memantau pola dan kebiasaan harian dengan lebih mudah. Semua data tersimpan aman, jadi kamu bisa lebih peduli dan waspada terhadap kesehatan pencernaanmu sendiri!"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Indikator titik -->
+    <LinearLayout
+        android:id="@+id/indicatorLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Atur jadwal buang air besar biar perut nyaman~"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:paddingTop="8dp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="●"
+            android:textColor="#000"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ○"
+            android:textColor="#888"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ○"
+            android:textColor="#888"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <!-- Tombol Next -->
+    <TextView
         android:id="@+id/btnMulai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
         android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="32dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"/>
-</LinearLayout>
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
