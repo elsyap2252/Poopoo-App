@@ -1,44 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp"
-    android:gravity="center"
-    android:background="#FFF">
+    android:padding="32dp">
 
+    <!-- Gambar -->
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:id="@+id/imageOnboarding"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:src="@drawable/poop"
-        android:contentDescription="Start Now Icon"/>
+        android:contentDescription="Poop Planner Icon"
+        android:layout_marginTop="85dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Judul -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Ayo jadi Poop Planner Pro!"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:paddingTop="16dp"/>
+        android:textAlignment="center"
+        android:layout_marginTop="120dp"
+        app:layout_constraintTop_toBottomOf="@id/imageOnboarding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Deskripsi -->
     <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Atur pengingat harian supaya kamu terbiasa BAB secara teratur dan nggak sembarangan lagi! Dengan perut yang sehat, tubuh jadi lebih segar, mood makin stabil, dan aktivitas sehari-hari pun jadi lebih nyaman."
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Indikator titik -->
+    <LinearLayout
+        android:id="@+id/indicatorLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Catat, jadwalkan, dan jaga kesehatanmu"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:paddingTop="8dp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="○"
+            android:textColor="#888"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ○"
+            android:textColor="#888"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" ●"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <!-- Tombol Get Started -->
     <Button
         android:id="@+id/btnMulai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Now"
+        android:text="Get Started"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="32dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"/>
-</LinearLayout>
+        android:background="#0050B3"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
