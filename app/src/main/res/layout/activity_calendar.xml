@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
+
+
+    <TextView
+        android:id="@+id/titleCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:textColor="#000000" />
 
     <!-- ScrollView agar isi bisa discroll -->
     <ScrollView
@@ -13,10 +24,10 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,29 +38,29 @@
                 android:id="@+id/btnSettings"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_setting"
+                android:layout_gravity="end"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:contentDescription="Settings"
-                android:layout_gravity="end"/>
+                android:src="@drawable/ic_setting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_showOtherDates="all"
                 app:mcv_firstDayOfWeek="monday"
-                app:mcv_selectionColor="#00C2A8" />
+                app:mcv_selectionColor="#00C2A8"
+                app:mcv_showOtherDates="all" />
 
             <TextView
                 android:id="@+id/dateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1 April 2025"
-                android:textStyle="bold"
                 android:layout_marginTop="16dp"
+                android:text="1 April 2025"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 android:visibility="gone" />
 
             <LinearLayout
@@ -57,14 +68,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                android:paddingTop="16dp">
+                android:paddingTop="16dp"
+                android:visibility="gone">
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Time: 18:49" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Type: 1" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Size: L" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Color: Brown" />
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Location: Home" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time: 18:49" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type: 1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size: L" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Color: Brown" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Location: Home" />
             </LinearLayout>
 
             <Button
@@ -73,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Add Poop"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF" />
 
 
         </LinearLayout>
@@ -88,9 +118,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
-        app:menu="@menu/navbar_menu"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:menu="@menu/navbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
