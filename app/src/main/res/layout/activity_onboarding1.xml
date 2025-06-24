@@ -78,16 +78,17 @@
             android:textSize="20sp"/>
     </LinearLayout>
 
-    <!-- Tombol Next -->
-    <TextView
+    <Button
         android:id="@+id/btnMulai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
         android:textAllCaps="false"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="#8A56D0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

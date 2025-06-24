@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+
     <TextView
         android:id="@+id/titleCalendar"
         android:layout_width="match_parent"
@@ -19,24 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Kontainer scroll -->
+    <!-- ScrollView agar isi bisa discroll -->
     <ScrollView
         android:id="@+id/scrollContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/titleCalendar"
         app:layout_constraintBottom_toTopOf="@id/navbar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Tombol Settings -->
             <ImageButton
                 android:id="@+id/btnSettings"
                 android:layout_width="48dp"
@@ -44,9 +44,10 @@
                 android:layout_gravity="end"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Settings"
-                android:src="@drawable/ic_setting" />
+                android:src="@drawable/ic_setting"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Kalender -->
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
@@ -55,72 +56,66 @@
                 app:mcv_selectionColor="#00C2A8"
                 app:mcv_showOtherDates="all" />
 
-            <!-- Tanggal dipilih -->
             <TextView
                 android:id="@+id/dateText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Selected Date"
+                android:text="1 April 2025"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
 
-            <!-- Detail poop muncul di sini -->
             <LinearLayout
                 android:id="@+id/detailBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#F5F5F5"
-                android:padding="12dp"
-                android:layout_marginTop="8dp"
+                android:paddingTop="16dp"
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/poopTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Time: -" />
+                    android:text="Time: 18:49" />
 
                 <TextView
-                    android:id="@+id/poopType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Type: -" />
+                    android:text="Type: 1" />
 
                 <TextView
-                    android:id="@+id/poopSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Size: -" />
+                    android:text="Size: L" />
 
                 <TextView
-                    android:id="@+id/poopColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Color: -" />
+                    android:text="Color: Brown" />
 
                 <TextView
-                    android:id="@+id/poopNote"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Note: -" />
+                    android:text="Location: Home" />
             </LinearLayout>
 
-            <!-- Tombol Add Poop -->
             <Button
                 android:id="@+id/btnAddEntry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="#8A56D0"
                 android:text="Add Poop"
                 android:textColor="#FFFFFF" />
+
+
         </LinearLayout>
     </ScrollView>
 
-    <!-- Navigasi bawah -->
+    <!-- Button Setting di pojok kanan atas -->
+
+
+    <!-- Bottom Navigation Bar -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navbar"
         android:layout_width="0dp"
@@ -128,7 +123,7 @@
         android:background="?android:attr/windowBackground"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navbar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

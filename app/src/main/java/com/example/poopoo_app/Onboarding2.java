@@ -2,7 +2,7 @@ package com.example.poopoo_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.Button; // Ganti dari TextView ke Button
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Onboarding2 extends AppCompatActivity {
@@ -11,7 +11,7 @@ public class Onboarding2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding2);
 
-        Button btnNext = findViewById(R.id.btnMulai);
+        Button btnNext = findViewById(R.id.btnMulai); // Ganti tipe ke Button
         btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(Onboarding2.this, Onboarding3.class);
             startActivity(intent);
