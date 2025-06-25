@@ -100,23 +100,25 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public void updatePoopLog(PoopLog log) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COL_DATE, log.getDate());
-        values.put(COL_TIME, log.getTime());
-        values.put(COL_SHAPE, log.getShape());
-        values.put(COL_COLOR, log.getColor());
-        values.put(COL_SIZE, log.getSize());
-        values.put(COL_NOTES, log.getNotes());
-
-        db.update(TABLE_NAME, values, COL_ID + " = ?", new String[]{String.valueOf(log.getId())});
-        db.close();
-    }
-
     public void deletePoopLog(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, COL_ID + " = ?", new String[]{String.valueOf(id)});
         db.close();
     }
+
+    public void updatePoopLog(PoopLog log) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("date", log.getDate());
+        values.put("time", log.getTime());
+        values.put("shape", log.getShape());
+        values.put("color", log.getColor());
+        values.put("size", log.getSize());
+        values.put("notes", log.getNotes());
+
+        db.update("poop_logs", values, "id = ?", new String[]{String.valueOf(log.getId())});
+        db.close();
+    }
+
+
 }

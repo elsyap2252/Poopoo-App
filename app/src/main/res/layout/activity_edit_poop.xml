@@ -1,57 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTime"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Time" />
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editShape"
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/btnBack"
+                android:src="@drawable/back_button"
+                android:contentDescription="Back"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="12dp"
+                android:layout_gravity="center_vertical"/>
+            <!-- Judul -->
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Poop"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="12dp"
+                />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000000" />
+
+        <!-- Barisan tanggal -->
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Shape" />
+            android:layout_marginTop="8dp">
 
-        <EditText
-            android:id="@+id/editColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Color" />
+            <LinearLayout
+                android:id="@+id/dateContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editSize"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Size" />
+                <!-- Tambahkan Button atau TextView programmatically -->
+            </LinearLayout>
+        </HorizontalScrollView>
 
-        <EditText
-            android:id="@+id/editNotes"
-            android:layout_width="match_parent"
+        <!-- Hari -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Notes" />
-
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Update"
+            android:text="Date"
+            android:textStyle="bold"
+            android:textSize="18dp"
             android:layout_marginTop="16dp" />
 
-        <Button
-            android:id="@+id/btnDelete"
+        <LinearLayout
+            android:id="@+id/datePickerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            android:minHeight="40dp">
+
+            <TextView
+                android:id="@+id/dayText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" / "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/monthText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" / "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/yearText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2025"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+        <!-- Waktu -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_marginTop="16dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/timePickerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            android:minHeight="40dp">
+
+            <TextView
+                android:id="@+id/hourText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/minuteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="09"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/ampmText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AM"
+                android:layout_marginStart="8dp"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- Detail Poop -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="POO DETAILS"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <!-- Shape -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shape"
+            android:layout_marginTop="12dp"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FF4444" />
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_marginTop="8dp">
+
+            <!-- Contoh ImageView bentuk (di dalam lingkaran) -->
+            <ImageButton
+                android:id="@+id/poopshape1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape1"
+                android:contentDescription="shape1"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
+                android:id="@+id/poopshape2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape2"
+                android:contentDescription="shape2"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
+                android:id="@+id/poopshape3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape3"
+                android:contentDescription="shape3"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
+                android:id="@+id/poopshape4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape4"
+                android:contentDescription="shape4"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
+                android:id="@+id/poopshape5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape5"
+                android:contentDescription="shape5"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
+                android:id="@+id/poopshape6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/shape6"
+                android:contentDescription="shape6"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+
+            <!-- Tambahkan ImageView lain untuk shape2, shape3, dll -->
+        </LinearLayout>
+
+        <!-- Color -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color"
+            android:layout_marginTop="12dp"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left"
+            android:layout_marginTop="8dp">
+            <!-- Contoh lingkaran warna -->
+            <ImageButton
+                android:id="@+id/colorYellow"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_circle_yellow"
+                android:contentDescription="yellow" />
+            <ImageButton
+                android:id="@+id/colorBrown"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_circle_brown"
+                android:contentDescription="brown" />
+            <ImageButton
+                android:id="@+id/colorRed"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_circle_red"
+                android:contentDescription="red" />
+            <ImageButton
+                android:id="@+id/colorBlack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_circle_black"
+                android:contentDescription="Black" />
+            <ImageButton
+                android:id="@+id/colorGreen"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/color_circle_green"
+                android:contentDescription="green" />
+            <!-- Tambahkan lingkaran warna lainnya -->
+        </LinearLayout>
+
+        <!-- Size -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:layout_marginTop="12dp"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="left">
+
+            <!-- Contoh ukuran (kotak gradasi ukuran) -->
+            <ImageButton
+                android:id="@+id/size1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="4dp"
+                android:background="#CCCCCC"
+                android:contentDescription="size1" />
+            <ImageButton
+                android:id="@+id/size2"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_margin="4dp"
+                android:background="#CCCCCC"
+                android:contentDescription="size2"
+                />
+            <ImageButton
+                android:id="@+id/size3"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_margin="4dp"
+                android:background="#CCCCCC"
+                android:contentDescription="size3"
+                />
+            <ImageButton
+                android:id="@+id/size4"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_margin="4dp"
+                android:background="#CCCCCC"
+                android:contentDescription="size4"
+                />
+            <ImageButton
+                android:id="@+id/size5"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="4dp"
+                android:background="#CCCCCC"
+                android:contentDescription="size5"
+                />
+            <!-- Tambahkan view lain dengan ukuran berbeda -->
+        </LinearLayout>
+
+        <!-- Notes -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notes"
+            android:layout_marginTop="12dp"
+            android:textStyle="bold" />
+
+        <!-- Tombol Simpan -->
+        <EditText
+            android:id="@+id/notesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#DDD"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:hint="Write your notes here..."/>
+
+        <Button
+            android:id="@+id/btnSavePoo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EDIT POO"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"/>
+
+
     </LinearLayout>
 </ScrollView>

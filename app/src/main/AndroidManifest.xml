@@ -12,51 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Poopoo_App"
         tools:targetApi="31">
-        <activity
-            android:name=".ContactusActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TermsAndPoliciesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Intro2Activity"
-            android:exported="false" />
-        <activity
-            android:name=".Intro1Activity"
-            android:exported="false" />
-        <activity
-            android:name=".AddPoopActivity"
-            android:exported="false" />
-        <activity
-            android:name=".StatisticActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SettingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Onboarding3"
-            android:exported="false" />
-        <activity
-            android:name=".Onboarding2"
-            android:exported="false" />
-        <activity
-            android:name=".Onboarding1"
-            android:exported="false" />
-        <activity
-            android:name=".OnboardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CalendarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+
+        <!-- Semua Activity -->
+        <activity android:name=".ContactusActivity" android:exported="false" />
+        <activity android:name=".TermsAndPoliciesActivity" android:exported="false" />
+        <activity android:name=".Intro2Activity" android:exported="false" />
+        <activity android:name=".Intro1Activity" android:exported="false" />
+        <activity android:name=".AddPoopActivity" android:exported="false" />
+        <activity android:name=".StatisticActivity" android:exported="false" />
+        <activity android:name=".SettingActivity" android:exported="true" />
+        <activity android:name=".Onboarding3" android:exported="false" />
+        <activity android:name=".Onboarding2" android:exported="false" />
+        <activity android:name=".Onboarding1" android:exported="false" />
+        <activity android:name=".OnboardingActivity" android:exported="false" />
+        <activity android:name=".CalendarActivity" android:exported="false" />
+
+        <!-- Tambahkan ini -->
+        <activity android:name=".EditPoopActivity" android:exported="false" />
+
+        <!-- Main Launcher -->
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

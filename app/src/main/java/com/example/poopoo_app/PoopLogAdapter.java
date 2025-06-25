@@ -57,6 +57,7 @@ public class PoopLogAdapter extends RecyclerView.Adapter<PoopLogAdapter.ViewHold
         holder.txtSize.setText("Size: " + log.getSize());
         holder.txtNotes.setText("Notes: " + log.getNotes());
 
+        // Edit button
         holder.btnEdit.setOnClickListener(v -> {
             Intent intent = new Intent(context, EditPoopActivity.class);
             intent.putExtra("id", log.getId());
@@ -69,6 +70,7 @@ public class PoopLogAdapter extends RecyclerView.Adapter<PoopLogAdapter.ViewHold
             context.startActivity(intent);
         });
 
+        // Delete button
         holder.btnDelete.setOnClickListener(v -> {
             PoopDatabaseHelper dbHelper = new PoopDatabaseHelper(context);
             dbHelper.deletePoopLog(log.getId());
