@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginStart="4dp"
+    android:padding="10dp"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/imageOnboarding1"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/sedang_poop"
+        android:contentDescription="gambar orang poop" />
+
+    <TextView
+        android:id="@+id/titleOnboarding1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Poopoo!"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/descOnboarding1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Imagine a life where understanding your digestive health is simple and insightful.\n\nWith Poo Patrol, you can effortlessly log your bowel movements and uncover patterns that lead to a healthier you.\n\nJoin us on this journey to better wellness, one log at a time."
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:justificationMode="inter_word"/>
+
+    <Button
+        android:id="@+id/btnContinue1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:layout_marginTop="32dp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp" />
+</LinearLayout>

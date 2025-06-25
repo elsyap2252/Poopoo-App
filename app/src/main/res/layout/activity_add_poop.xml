@@ -38,7 +38,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:padding="12dp"
-            android:textColor="#ff5733" />
+             />
 
     </LinearLayout>
         <View
@@ -192,55 +192,68 @@
             android:orientation="horizontal"
             android:gravity="left"
             android:layout_marginTop="8dp">
+
             <!-- Contoh ImageView bentuk (di dalam lingkaran) -->
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageButton
                 android:id="@+id/poopshape1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape1"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
-            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/shape1"
+                android:contentDescription="shape1"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
                 android:id="@+id/poopshape2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape2"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
-            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/shape2"
+                android:contentDescription="shape2"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
                 android:id="@+id/poopshape3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape3"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
-            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/shape3"
+                android:contentDescription="shape3"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
                 android:id="@+id/poopshape4"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape4"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
-            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/shape4"
+                android:contentDescription="shape4"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
                 android:id="@+id/poopshape5"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape5"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
-            <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/shape5"
+                android:contentDescription="shape5"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
+            <ImageButton
                 android:id="@+id/poopshape6"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="8dp"
-                android:src="@drawable/shape6"
-                android:background="#FFFFFF"
-                android:elevation="2dp" />
+                android:background="@drawable/shape6"
+                android:contentDescription="shape6"
+                android:scaleType="centerInside"
+                android:padding="6dp"
+                />
 
             <!-- Tambahkan ImageView lain untuk shape2, shape3, dll -->
         </LinearLayout>
@@ -260,36 +273,41 @@
             android:gravity="left"
             android:layout_marginTop="8dp">
             <!-- Contoh lingkaran warna -->
-            <View
+            <ImageButton
                 android:id="@+id/colorYellow"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"
-                android:background="@drawable/color_circle_yellow" />
-            <View
+                android:background="@drawable/color_circle_yellow"
+                android:contentDescription="yellow" />
+            <ImageButton
                 android:id="@+id/colorBrown"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"
-                android:background="@drawable/color_circle_brown" />
-            <View
+                android:background="@drawable/color_circle_brown"
+                android:contentDescription="brown" />
+            <ImageButton
                 android:id="@+id/colorRed"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"
-                android:background="@drawable/color_circle_red" />
-            <View
+                android:background="@drawable/color_circle_red"
+                android:contentDescription="red" />
+            <ImageButton
                 android:id="@+id/colorBlack"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_margin="4dp"
-                android:background="@drawable/color_circle_black" />
-            <View
-                android:id="@+id/colorGreen"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="4dp"
-                android:background="@drawable/color_circle_green" />
+                android:background="@drawable/color_circle_black"
+                android:contentDescription="Black" />
+            <ImageButton
+            android:id="@+id/colorGreen"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/color_circle_green"
+            android:contentDescription="green" />
             <!-- Tambahkan lingkaran warna lainnya -->
         </LinearLayout>
 
@@ -309,36 +327,45 @@
             android:gravity="left">
 
             <!-- Contoh ukuran (kotak gradasi ukuran) -->
-            <View
+            <ImageButton
                 android:id="@+id/size1"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_margin="4dp"
-                android:background="#CCCCCC" />
-            <View
+                android:background="#CCCCCC"
+                android:contentDescription="size1" />
+            <ImageButton
                 android:id="@+id/size2"
                 android:layout_width="23dp"
                 android:layout_height="23dp"
                 android:layout_margin="4dp"
-                android:background="#CCCCCC" />
-            <View
+                android:background="#CCCCCC"
+                android:contentDescription="size2"
+                />
+            <ImageButton
                 android:id="@+id/size3"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_margin="4dp"
-                android:background="#CCCCCC" />
-            <View
+                android:background="#CCCCCC"
+                android:contentDescription="size3"
+                />
+            <ImageButton
                 android:id="@+id/size4"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_margin="4dp"
-                android:background="#CCCCCC" />
-            <View
+                android:background="#CCCCCC"
+                android:contentDescription="size4"
+                />
+            <ImageButton
                 android:id="@+id/size5"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="4dp"
-                android:background="#CCCCCC" />
+                android:background="#CCCCCC"
+                android:contentDescription="size5"
+                />
             <!-- Tambahkan view lain dengan ukuran berbeda -->
         </LinearLayout>
 
