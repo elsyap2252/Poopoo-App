@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".StatisticActivity">
 
     <!-- JUDUL DI LUAR SCROLLVIEW -->
     <TextView
         android:id="@+id/titleStatistic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Statistic of Month"
+        android:text="Statistic of This Week"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -41,6 +41,7 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
 
+            <!-- BAR CHART -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,19 +58,54 @@
                 android:background="#F0F0F0"
                 android:elevation="6dp" />
 
+            <!-- PIE SHAPE -->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bristol Stool Type"
+                android:text="Poop Shape Distribution"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="8dp"/>
 
             <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
+                android:id="@+id/pieChartShape"
                 android:layout_width="match_parent"
-                android:layout_height="290dp"
+                android:layout_height="250dp"
+                android:background="#F0F0F0"
+                android:elevation="6dp" />
+
+            <!-- PIE SIZE -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Poop Size Distribution"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChartSize"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="#F0F0F0"
+                android:elevation="6dp" />
+
+            <!-- PIE COLOR -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Poop Color Distribution"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="8dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChartColor"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
                 android:background="#F0F0F0"
                 android:elevation="6dp" />
 

@@ -6,8 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class PoopDatabaseHelper extends SQLiteOpenHelper {
 
@@ -48,7 +49,6 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
 
     public void insertPoopLog(String date, String time, String shape, String color, String size, String notes) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(COL_DATE, date);
         values.put(COL_TIME, time);
@@ -56,7 +56,6 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_COLOR, color);
         values.put(COL_SIZE, size);
         values.put(COL_NOTES, notes);
-
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
@@ -109,16 +108,50 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
     public void updatePoopLog(PoopLog log) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("date", log.getDate());
-        values.put("time", log.getTime());
-        values.put("shape", log.getShape());
-        values.put("color", log.getColor());
-        values.put("size", log.getSize());
-        values.put("notes", log.getNotes());
-
-        db.update("poop_logs", values, "id = ?", new String[]{String.valueOf(log.getId())});
+        values.put(COL_DATE, log.getDate());
+        values.put(COL_TIME, log.getTime());
+        values.put(COL_SHAPE, log.getShape());
+        values.put(COL_COLOR, log.getColor());
+        values.put(COL_SIZE, log.getSize());
+        values.put(COL_NOTES, log.getNotes());
+        db.update(TABLE_NAME, values, COL_ID + " = ?", new String[]{String.valueOf(log.getId())});
         db.close();
     }
 
+    public List<PoopLog> getPoopLogsLast7Days() {
+        List<PoopLog> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        // Ambil semua data
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE));
+                String time = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIME));
+                String dateTimeStr = date + " " + time;
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.getDefault());
+
+                try {
+                    Date parsedDate = sdf.parse(dateTimeStr);
+                    if (parsedDate != null) {
+                        long now = System.currentTimeMillis();
+                        long sevenDaysAgo = now - (7L * 24 * 60 * 60 * 1000);
+                        if (parsedDate.getTime() >= sevenDaysAgo) {
+                            int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
+                            String shape = cursor.getString(cursor.getColumnIndexOrThrow(COL_SHAPE));
+                            String color = cursor.getString(cursor.getColumnIndexOrThrow(COL_COLOR));
+                            String size = cursor.getString(cursor.getColumnIndexOrThrow(COL_SIZE));
+                            String notes = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTES));
+                            list.add(new PoopLog(id, date, time, shape, color, size, notes));
+                        }
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return list;
+    }
 }
