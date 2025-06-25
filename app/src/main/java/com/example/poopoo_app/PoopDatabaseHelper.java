@@ -1,10 +1,10 @@
 package com.example.poopoo_app;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.ContentValues;
-import android.database.Cursor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,16 +65,15 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
         List<PoopLog> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_DATE + " = ?", new String[]{date});
-
         if (cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
                 String time = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIME));
                 String shape = cursor.getString(cursor.getColumnIndexOrThrow(COL_SHAPE));
                 String color = cursor.getString(cursor.getColumnIndexOrThrow(COL_COLOR));
                 String size = cursor.getString(cursor.getColumnIndexOrThrow(COL_SIZE));
                 String notes = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTES));
-
-                list.add(new PoopLog(date, time, shape, color, size, notes));
+                list.add(new PoopLog(id, date, time, shape, color, size, notes));
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -84,21 +83,40 @@ public class PoopDatabaseHelper extends SQLiteOpenHelper {
     public List<PoopLog> getAllPoopLogs() {
         List<PoopLog> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL_DATE + " DESC, " + COL_TIME + " DESC", null);
-
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
         if (cursor.moveToFirst()) {
             do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(COL_ID));
                 String date = cursor.getString(cursor.getColumnIndexOrThrow(COL_DATE));
                 String time = cursor.getString(cursor.getColumnIndexOrThrow(COL_TIME));
                 String shape = cursor.getString(cursor.getColumnIndexOrThrow(COL_SHAPE));
                 String color = cursor.getString(cursor.getColumnIndexOrThrow(COL_COLOR));
                 String size = cursor.getString(cursor.getColumnIndexOrThrow(COL_SIZE));
                 String notes = cursor.getString(cursor.getColumnIndexOrThrow(COL_NOTES));
-
-                list.add(new PoopLog(date, time, shape, color, size, notes));
+                list.add(new PoopLog(id, date, time, shape, color, size, notes));
             } while (cursor.moveToNext());
         }
         cursor.close();
         return list;
+    }
+
+    public void updatePoopLog(PoopLog log) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_DATE, log.getDate());
+        values.put(COL_TIME, log.getTime());
+        values.put(COL_SHAPE, log.getShape());
+        values.put(COL_COLOR, log.getColor());
+        values.put(COL_SIZE, log.getSize());
+        values.put(COL_NOTES, log.getNotes());
+
+        db.update(TABLE_NAME, values, COL_ID + " = ?", new String[]{String.valueOf(log.getId())});
+        db.close();
+    }
+
+    public void deletePoopLog(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, COL_ID + " = ?", new String[]{String.valueOf(id)});
+        db.close();
     }
 }

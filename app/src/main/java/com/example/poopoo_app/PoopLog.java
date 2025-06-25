@@ -1,6 +1,7 @@
 package com.example.poopoo_app;
 
 public class PoopLog {
+    private int id;
     private String date;
     private String time;
     private String shape;
@@ -8,7 +9,7 @@ public class PoopLog {
     private String size;
     private String notes;
 
-    // Constructor
+    // Constructor tanpa id (untuk insert baru)
     public PoopLog(String date, String time, String shape, String color, String size, String notes) {
         this.date = date;
         this.time = time;
@@ -18,7 +19,25 @@ public class PoopLog {
         this.notes = notes;
     }
 
-    // Getter dan Setter
+    // Constructor lengkap (untuk ambil dari database)
+    public PoopLog(int id, String date, String time, String shape, String color, String size, String notes) {
+        this.id = id;
+        this.date = date;
+        this.time = time;
+        this.shape = shape;
+        this.color = color;
+        this.size = size;
+        this.notes = notes;
+    }
+
+    // Getter & Setter
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDate() {
         return date;
