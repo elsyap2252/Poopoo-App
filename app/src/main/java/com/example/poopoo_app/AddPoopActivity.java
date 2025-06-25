@@ -64,12 +64,17 @@ public class AddPoopActivity extends AppCompatActivity {
         LinearLayout dateLayout = findViewById(R.id.datePickerLayout);
         dateLayout.setOnClickListener(v -> {
             Calendar c = Calendar.getInstance();
-            new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            DatePickerDialog picker = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
                 dayText.setText(String.format("%02d", dayOfMonth));
                 monthText.setText(String.format("%02d", month + 1));
                 yearText.setText(String.valueOf(year));
-            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
+            picker.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+            picker.show();
         });
+
 
         // ⏰ Time Picker
         LinearLayout timeLayout = findViewById(R.id.timePickerLayout);
