@@ -25,9 +25,6 @@
             android:name=".Intro1Activity"
             android:exported="false" />
         <activity
-            android:name=".EditAlarmActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddPoopActivity"
             android:exported="false" />
         <activity
@@ -50,9 +47,6 @@
             android:exported="false" />
         <activity
             android:name=".CalendarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AlarmActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

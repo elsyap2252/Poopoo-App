@@ -14,10 +14,10 @@ import androidx.core.content.ContextCompat;
 import java.util.Calendar;
 
 public class AddPoopActivity extends AppCompatActivity {
-
     TextView dayText, monthText, yearText, hourText, minuteText, ampmText;
     EditText notesEditText;
     Button btnSave;
+    PoopDatabaseHelper dbHelper;
 
     // Untuk menyimpan pilihan
     String selectedShape = "";
@@ -38,6 +38,8 @@ public class AddPoopActivity extends AppCompatActivity {
         ampmText = findViewById(R.id.ampmText);
         notesEditText = findViewById(R.id.notesEditText);
         btnSave = findViewById(R.id.btnSavePoo);
+
+        dbHelper = new PoopDatabaseHelper(this);
 
         LinearLayout dateLayout = findViewById(R.id.datePickerLayout);
         LinearLayout timeLayout = findViewById(R.id.timePickerLayout);
@@ -129,9 +131,8 @@ public class AddPoopActivity extends AppCompatActivity {
                 return;
             }
 
-            Toast.makeText(this, "Saved!\nDate: " + date + "\nTime: " + time +
-                    "\nShape: " + selectedShape + "\nColor: " + selectedColor + "\nSize: " + selectedSize +
-                    "\nNotes: " + notes, Toast.LENGTH_LONG).show();
+            dbHelper.insertPoopLog(date, time, selectedShape, selectedColor, selectedSize, notes);
+            Toast.makeText(this, "Log saved to database!", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(this, CalendarActivity.class);
             startActivity(intent);
@@ -156,27 +157,25 @@ public class AddPoopActivity extends AppCompatActivity {
     }
 
     private int getOriginalBackgroundResId(int viewId) {
+        // Color
         if (viewId == R.id.colorYellow) return R.drawable.color_circle_yellow;
-            // Colors
         else if (viewId == R.id.colorBrown) return R.drawable.color_circle_brown;
         else if (viewId == R.id.colorRed) return R.drawable.color_circle_red;
         else if (viewId == R.id.colorBlack) return R.drawable.color_circle_black;
         else if (viewId == R.id.colorGreen) return R.drawable.color_circle_green;
 
-        if (viewId == R.id.size1) return R.drawable.size_background;
-        else if (viewId == R.id.size2) return R.drawable.size_background;
-        else if (viewId == R.id.size3) return R.drawable.size_background;
-        else if (viewId == R.id.size4) return R.drawable.size_background;
-        else if (viewId == R.id.size5) return R.drawable.size_background;
+            // Size
+        else if (viewId == R.id.size1 || viewId == R.id.size2 || viewId == R.id.size3 ||
+                viewId == R.id.size4 || viewId == R.id.size5) return R.drawable.size_background;
 
-        if (viewId == R.id.poopshape1) return R.drawable.shape1;
+            // Shape
+        else if (viewId == R.id.poopshape1) return R.drawable.shape1;
         else if (viewId == R.id.poopshape2) return R.drawable.shape2;
         else if (viewId == R.id.poopshape3) return R.drawable.shape3;
         else if (viewId == R.id.poopshape4) return R.drawable.shape4;
         else if (viewId == R.id.poopshape5) return R.drawable.shape5;
         else if (viewId == R.id.poopshape6) return R.drawable.shape6;
 
-            return android.R.color.transparent;
-
+        return android.R.color.transparent;
     }
 }
