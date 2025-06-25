@@ -1,6 +1,7 @@
 package com.example.poopoo_app;
 
 import android.content.Intent;
+import com.example.poopoo_app.R;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,15 +37,15 @@ public class CalendarActivity extends AppCompatActivity {
         });
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navbar);
-        bottomNavigationView.setSelectedItemId(R.id.nav_calendar);
+        bottomNavigationView.setSelectedItemId(R.id.menu_calendar);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             Intent intent = null;
             // Periksa item yang dipilih di BottomNavigationView menggunakan if
-            if (item.getItemId() == R.id.nav_calendar) {
+            if (item.getItemId() == R.id.menu_calendar) {
                 return true;
-            } else if (item.getItemId() == R.id.nav_statistic) {
+            } else if (item.getItemId() == R.id.menu_statistic) {
                 intent = new Intent(CalendarActivity.this, StatisticActivity.class);
-            } else if (item.getItemId() == R.id.nav_alarm) {
+            } else if (item.getItemId() == R.id.menu_alarm) {
                 intent = new Intent(CalendarActivity.this, AlarmActivity.class);
             }
             // Jika ada intent, mulai activity terkait

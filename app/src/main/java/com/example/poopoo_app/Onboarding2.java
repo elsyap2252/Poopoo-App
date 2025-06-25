@@ -11,7 +11,7 @@ public class Onboarding2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding2);
 
-        Button btnNext = findViewById(R.id.btnMulai); // Ganti tipe ke Button
+        Button btnNext = findViewById(R.id.btnMulai);
         btnNext.setOnClickListener(v -> {
             Intent intent = new Intent(Onboarding2.this, Onboarding3.class);
             startActivity(intent);

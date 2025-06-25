@@ -21,17 +21,17 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navbar);
-        bottomNavigationView.setSelectedItemId(R.id.nav_alarm);
+        bottomNavigationView.setSelectedItemId(R.id.menu_alarm);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 Intent intent = null;
 
-                if (item.getItemId() == R.id.nav_calendar) {
+                if (item.getItemId() == R.id.menu_calendar) {
                     intent = new Intent(AlarmActivity.this, CalendarActivity.class);
-                } else if (item.getItemId() == R.id.nav_statistic) {
+                } else if (item.getItemId() == R.id.menu_statistic) {
                     intent = new Intent(AlarmActivity.this, StatisticActivity.class);
-                } else if (item.getItemId() == R.id.nav_alarm) {
+                } else if (item.getItemId() == R.id.menu_alarm) {
                     return true;
                 }
 

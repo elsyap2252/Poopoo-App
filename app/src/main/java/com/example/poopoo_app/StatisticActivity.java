@@ -64,7 +64,7 @@ public class StatisticActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.navbar);
 
         // Menetapkan item yang dipilih di navbar saat ini
-        bottomNavigationView.setSelectedItemId(R.id.nav_statistic); // Menandakan Statistic sebagai halaman yang sedang dibuka
+        bottomNavigationView.setSelectedItemId(R.id.menu_statistic); // Menandakan Statistic sebagai halaman yang sedang dibuka
 
         // Menambahkan listener untuk perpindahan antar halaman
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -73,11 +73,11 @@ public class StatisticActivity extends AppCompatActivity {
                 Intent intent = null;
 
                 // Menangani navigasi berdasarkan item yang dipilih
-                if (item.getItemId() == R.id.nav_calendar) {
+                if (item.getItemId() == R.id.menu_calendar) {
                     intent = new Intent(StatisticActivity.this, CalendarActivity.class);
-                } else if (item.getItemId() == R.id.nav_alarm) {
+                } else if (item.getItemId() == R.id.menu_alarm) {
                     intent = new Intent(StatisticActivity.this, AlarmActivity.class);
-                } else if (item.getItemId() == R.id.nav_statistic) {
+                } else if (item.getItemId() == R.id.menu_statistic) {
                     // Sudah berada di halaman Statistic, jadi tidak perlu pindah
                     return true;
                 }
