@@ -72,11 +72,9 @@ public class StatisticActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 Intent intent = null;
 
-                // Menangani navigasi berdasarkan item yang dipilih
+                // Menangani navigasi berdasarkan item yang dipilih ..
                 if (item.getItemId() == R.id.nav_calendar) {
                     intent = new Intent(StatisticActivity.this, CalendarActivity.class);
-                } else if (item.getItemId() == R.id.nav_alarm) {
-                    intent = new Intent(StatisticActivity.this, AlarmActivity.class);
                 } else if (item.getItemId() == R.id.nav_statistic) {
                     // Sudah berada di halaman Statistic, jadi tidak perlu pindah
                     return true;
