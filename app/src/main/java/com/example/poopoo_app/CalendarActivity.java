@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         dbHelper = new PoopDatabaseHelper(this);
 
-        // Bottom Nav & Buttons
+        // Bottom nav & tombol
         ImageButton btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(v -> {
             Intent intent = new Intent(CalendarActivity.this, SettingActivity.class);
@@ -39,7 +38,15 @@ public class CalendarActivity extends AppCompatActivity {
 
         Button btnAddPoop = findViewById(R.id.btnAddEntry);
         btnAddPoop.setOnClickListener(v -> {
+            CalendarDay selectedDay = calendarView.getSelectedDate();
             Intent intent = new Intent(CalendarActivity.this, AddPoopActivity.class);
+
+            if (selectedDay != null) {
+                String selectedDate = String.format("%02d/%02d/%04d",
+                        selectedDay.getDay(), selectedDay.getMonth() + 1, selectedDay.getYear());
+                intent.putExtra("selected_date", selectedDate);
+            }
+
             startActivity(intent);
         });
 
@@ -63,19 +70,20 @@ public class CalendarActivity extends AppCompatActivity {
             return false;
         });
 
-        // Calendar View
+        // Calendar logic
         calendarView = findViewById(R.id.calendarView);
+        calendarView.setSelectedDate(CalendarDay.today()); // ✅ Default: hari ini
+
         calendarView.setOnDateChangedListener((widget, date, selected) -> {
             String selectedDate = String.format("%02d/%02d/%04d",
                     date.getDay(), date.getMonth() + 1, date.getYear());
             loadPoopLogsByDate(selectedDate);
         });
 
-        // Recycler View
         poopLogRecyclerView = findViewById(R.id.poopLogRecyclerView);
         poopLogRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Load semua data pertama kali
+        // Load data awal (semua)
         loadPoopLogsAll();
     }
 

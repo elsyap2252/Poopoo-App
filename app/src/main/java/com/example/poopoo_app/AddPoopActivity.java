@@ -8,18 +8,19 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 
 public class AddPoopActivity extends AppCompatActivity {
+
     TextView dayText, monthText, yearText, hourText, minuteText, ampmText;
     EditText notesEditText;
     Button btnSave;
     PoopDatabaseHelper dbHelper;
 
-    // Untuk menyimpan pilihan
     String selectedShape = "";
     String selectedColor = "";
     String selectedSize = "";
@@ -38,89 +39,96 @@ public class AddPoopActivity extends AppCompatActivity {
         ampmText = findViewById(R.id.ampmText);
         notesEditText = findViewById(R.id.notesEditText);
         btnSave = findViewById(R.id.btnSavePoo);
-
         dbHelper = new PoopDatabaseHelper(this);
-
-        LinearLayout dateLayout = findViewById(R.id.datePickerLayout);
-        LinearLayout timeLayout = findViewById(R.id.timePickerLayout);
 
         ImageView btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // Pilih tanggal
-        dateLayout.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
+        // ⏱ Set waktu sekarang sebagai default
+        Calendar now = Calendar.getInstance();
+        setDateToNow(now);
+        setTimeToNow(now);
 
-            new DatePickerDialog(this, (view, selectedYear, selectedMonth, selectedDay) -> {
-                dayText.setText(String.format("%02d", selectedDay));
-                monthText.setText(String.format("%02d", selectedMonth + 1));
-                yearText.setText(String.valueOf(selectedYear));
-            }, year, month, day).show();
+        // 📅 Jika dipanggil dari CalendarActivity dengan tanggal tertentu
+        Intent intent = getIntent();
+        if (intent.hasExtra("selectedDate")) {
+            String[] parts = intent.getStringExtra("selectedDate").split("/");
+            if (parts.length == 3) {
+                dayText.setText(parts[0]);
+                monthText.setText(parts[1]);
+                yearText.setText(parts[2]);
+            }
+        }
+
+        // 🗓 Date Picker
+        LinearLayout dateLayout = findViewById(R.id.datePickerLayout);
+        dateLayout.setOnClickListener(v -> {
+            Calendar c = Calendar.getInstance();
+            new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+                dayText.setText(String.format("%02d", dayOfMonth));
+                monthText.setText(String.format("%02d", month + 1));
+                yearText.setText(String.valueOf(year));
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
         });
 
-        // Pilih waktu
+        // ⏰ Time Picker
+        LinearLayout timeLayout = findViewById(R.id.timePickerLayout);
         timeLayout.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
-
-            new TimePickerDialog(this, (view, selectedHour, selectedMinute) -> {
-                boolean isPM = selectedHour >= 12;
-                int hour12 = selectedHour % 12;
+            Calendar c = Calendar.getInstance();
+            new TimePickerDialog(this, (view, hour, minute) -> {
+                boolean isPM = hour >= 12;
+                int hour12 = hour % 12;
                 if (hour12 == 0) hour12 = 12;
 
                 hourText.setText(String.format("%02d", hour12));
-                minuteText.setText(String.format("%02d", selectedMinute));
+                minuteText.setText(String.format("%02d", minute));
                 ampmText.setText(isPM ? "PM" : "AM");
-            }, hour, minute, false).show();
+            }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), false).show();
         });
 
-        // Shape
+        // 🔶 Shape
         int[] shapeIds = {
                 R.id.poopshape1, R.id.poopshape2, R.id.poopshape3,
                 R.id.poopshape4, R.id.poopshape5, R.id.poopshape6
         };
         for (int id : shapeIds) {
-            ImageButton shapeButton = findViewById(id);
-            shapeButton.setOnClickListener(v -> {
+            ImageButton btn = findViewById(id);
+            btn.setOnClickListener(v -> {
                 selectedShape = getResources().getResourceEntryName(v.getId());
                 resetBackgrounds(shapeIds);
                 applyOutline(v, R.drawable.outline_rectangle);
             });
         }
 
-        // Color
+        // 🔵 Color
         int[] colorIds = {
                 R.id.colorYellow, R.id.colorBrown, R.id.colorRed,
                 R.id.colorBlack, R.id.colorGreen
         };
         for (int id : colorIds) {
-            ImageButton colorButton = findViewById(id);
-            colorButton.setOnClickListener(v -> {
+            ImageButton btn = findViewById(id);
+            btn.setOnClickListener(v -> {
                 selectedColor = getResources().getResourceEntryName(v.getId());
                 resetBackgrounds(colorIds);
                 applyOutline(v, R.drawable.outline_circle);
             });
         }
 
-        // Size
+        // 🔸 Size
         int[] sizeIds = {
                 R.id.size1, R.id.size2, R.id.size3,
                 R.id.size4, R.id.size5
         };
         for (int id : sizeIds) {
-            ImageButton sizeButton = findViewById(id);
-            sizeButton.setOnClickListener(v -> {
+            ImageButton btn = findViewById(id);
+            btn.setOnClickListener(v -> {
                 selectedSize = getResources().getResourceEntryName(v.getId());
                 resetBackgrounds(sizeIds);
                 applyOutline(v, R.drawable.outline_rectangle);
             });
         }
 
-        // Tombol Simpan
+        // 💾 Simpan log
         btnSave.setOnClickListener(v -> {
             String date = dayText.getText() + "/" + monthText.getText() + "/" + yearText.getText();
             String time = hourText.getText() + ":" + minuteText.getText() + " " + ampmText.getText();
@@ -132,28 +140,50 @@ public class AddPoopActivity extends AppCompatActivity {
             }
 
             dbHelper.insertPoopLog(date, time, selectedShape, selectedColor, selectedSize, notes);
-            Toast.makeText(this, "Log saved to database!", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(this, CalendarActivity.class);
-            startActivity(intent);
+            Toast.makeText(this, "Log saved!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, CalendarActivity.class));
             finish();
         });
+    }
+
+    private void setDateToNow(Calendar now) {
+        dayText.setText(String.format("%02d", now.get(Calendar.DAY_OF_MONTH)));
+        monthText.setText(String.format("%02d", now.get(Calendar.MONTH) + 1));
+        yearText.setText(String.valueOf(now.get(Calendar.YEAR)));
+    }
+
+    private void setTimeToNow(Calendar now) {
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        boolean isPM = hour >= 12;
+        int hour12 = hour % 12;
+        if (hour12 == 0) hour12 = 12;
+
+        hourText.setText(String.format("%02d", hour12));
+        minuteText.setText(String.format("%02d", minute));
+        ampmText.setText(isPM ? "PM" : "AM");
     }
 
     private void resetBackgrounds(int[] viewIds) {
         for (int id : viewIds) {
             View view = findViewById(id);
-            Drawable original = ContextCompat.getDrawable(this, getOriginalBackgroundResId(view.getId()));
-            view.setBackground(original);
+            int resId = getOriginalBackgroundResId(id);
+            if (resId != 0) {
+                Drawable original = ContextCompat.getDrawable(this, resId);
+                if (original != null) view.setBackground(original);
+            }
         }
     }
 
     private void applyOutline(View view, int outlineResId) {
-        Drawable base = ContextCompat.getDrawable(this, getOriginalBackgroundResId(view.getId()));
+        int baseResId = getOriginalBackgroundResId(view.getId());
+        Drawable base = ContextCompat.getDrawable(this, baseResId);
         Drawable outline = ContextCompat.getDrawable(this, outlineResId);
-        Drawable[] layers = new Drawable[]{base, outline};
-        LayerDrawable layered = new LayerDrawable(layers);
-        view.setBackground(layered);
+
+        if (base != null && outline != null) {
+            Drawable[] layers = new Drawable[]{base, outline};
+            view.setBackground(new LayerDrawable(layers));
+        }
     }
 
     private int getOriginalBackgroundResId(int viewId) {
@@ -176,6 +206,8 @@ public class AddPoopActivity extends AppCompatActivity {
         else if (viewId == R.id.poopshape5) return R.drawable.shape5;
         else if (viewId == R.id.poopshape6) return R.drawable.shape6;
 
+        // Default
         return android.R.color.transparent;
     }
-}
+    }
+
